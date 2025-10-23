@@ -12,6 +12,8 @@ DeckForge is a **content-agnostic game engine** that handles all the mechanics o
 - Enemy AI with intents or automated decks
 - Resource management (energy, currency, health)
 - **Market systems** (Dominion pattern AND Ascension pattern)
+- **Multiplayer support** (1-4 players, co-op or competitive)
+- **Progression systems** (multiple encounters, multiple acts)
 - Win/loss condition tracking
 - Save/load functionality
 - Undo/redo support
