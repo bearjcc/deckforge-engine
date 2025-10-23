@@ -11,12 +11,33 @@ DeckForge is a **content-agnostic game engine** that handles all the mechanics o
 - Combat with attacks, defense, status effects
 - Enemy AI with intents or automated decks
 - Resource management (energy, currency, health)
+- **Market systems** (Dominion pattern AND Ascension pattern)
 - Win/loss condition tracking
 - Save/load functionality
 - Undo/redo support
 
 **You provide:** Card definitions, enemy definitions, game config (all JSON)  
 **DeckForge handles:** Everything else
+
+### 🛒 Market Systems
+
+DeckForge supports **two distinct market patterns** used in popular deck-builders:
+
+**1. Market Row (Ascension/Star Realms pattern)**
+- Center row of cards visible during combat
+- Cards generate currency (Runes, Influence, etc.)
+- Spend currency SAME TURN to buy from market
+- Currency resets each turn (doesn't persist)
+- Perfect for: AGENCY, Ascension-style games
+
+**2. Fixed Market (Dominion/Hogwarts Battle pattern)**
+- Fixed stacks of cards with limited copies
+- Generate coins/influence from cards
+- Buy from stacks during your turn
+- Stacks deplete as players purchase
+- Perfect for: Simpler, more predictable games
+
+See `examples/market-row-example` and `examples/fixed-market-example` for working demos!
 
 ## 🎮 Play the Demo
 
