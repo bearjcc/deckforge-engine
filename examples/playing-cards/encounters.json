@@ -1,0 +1,13 @@
+[
+  {
+    "encounterId": "encounter_1",
+    "name": "First Encounter",
+    "enemies": ["joker_weak"]
+  },
+  {
+    "encounterId": "encounter_boss",
+    "name": "Boss Fight",
+    "enemies": ["joker_strong"]
+  }
+]
+

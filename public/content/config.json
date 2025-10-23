@@ -1,0 +1,20 @@
+{
+  "gameName": "DeckForge Demo",
+  "version": "1.0.0",
+  "description": "Generic deck-building adventure game using playing cards",
+  "startingEnergy": 3,
+  "startingHealth": 50,
+  "currencies": [
+    {
+      "id": "gold",
+      "name": "Gold",
+      "startingAmount": 0
+    }
+  ],
+  "rules": {
+    "reshuffleOnEmpty": true,
+    "blockResetsEachTurn": true,
+    "energyResetsEachTurn": true
+  }
+}
+

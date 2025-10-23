@@ -1,0 +1,51 @@
+[
+  {
+    "enemyId": "joker_weak",
+    "name": "Jester",
+    "type": "monster",
+    "maxHealth": 30,
+    "intents": [
+      {
+        "type": "attack",
+        "damage": 5,
+        "description": "Attack for 5",
+        "icon": "⚔️"
+      },
+      {
+        "type": "attack",
+        "damage": 8,
+        "description": "Attack for 8",
+        "icon": "⚔️"
+      }
+    ],
+    "icon": "🃏"
+  },
+  {
+    "enemyId": "joker_strong",
+    "name": "Joker Boss",
+    "type": "boss",
+    "maxHealth": 80,
+    "intents": [
+      {
+        "type": "attack",
+        "damage": 10,
+        "description": "Attack for 10",
+        "icon": "⚔️"
+      },
+      {
+        "type": "buff",
+        "powers": {"strength": 2},
+        "description": "Gain 2 Strength",
+        "icon": "💪"
+      },
+      {
+        "type": "attack",
+        "damage": 12,
+        "description": "Heavy attack for 12",
+        "icon": "⚔️⚔️"
+      }
+    ],
+    "icon": "🃏👑"
+  }
+]
+

@@ -1,0 +1,29 @@
+{
+  "name": "deckforge-engine",
+  "version": "1.0.0",
+  "description": "Generic deck-building adventure game engine - bring your own content!",
+  "main": "public/index.html",
+  "scripts": {
+    "start": "npx serve public",
+    "test": "echo \"Tests coming soon\" && exit 0"
+  },
+  "keywords": [
+    "deck-building",
+    "card-game",
+    "game-engine",
+    "browser-game",
+    "roguelike",
+    "adventure-game"
+  ],
+  "author": "Joseph C. Caswell",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bearjcc/deckforge-engine.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bearjcc/deckforge-engine/issues"
+  },
+  "homepage": "https://github.com/bearjcc/deckforge-engine#readme"
+}
+

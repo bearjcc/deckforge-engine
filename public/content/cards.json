@@ -1,0 +1,91 @@
+[
+  {
+    "cardId": "strike",
+    "name": "Strike",
+    "type": "attack",
+    "rarity": "starter",
+    "energyCost": 1,
+    "damage": 6,
+    "target": "enemy0",
+    "description": "Deal 6 damage.",
+    "icon": "🗡️"
+  },
+  {
+    "cardId": "defend",
+    "name": "Defend",
+    "type": "skill",
+    "rarity": "starter",
+    "energyCost": 1,
+    "block": 5,
+    "target": "player",
+    "description": "Gain 5 Block.",
+    "icon": "🛡️"
+  },
+  {
+    "cardId": "bash",
+    "name": "Bash",
+    "type": "attack",
+    "rarity": "starter",
+    "energyCost": 2,
+    "damage": 8,
+    "powers": {"vulnerable": 2},
+    "target": "enemy0",
+    "description": "Deal 8 damage. Apply 2 Vulnerable.",
+    "icon": "💥"
+  },
+  {
+    "cardId": "ace_attack",
+    "name": "Ace of Spades",
+    "type": "attack",
+    "rarity": "common",
+    "energyCost": 1,
+    "damage": 10,
+    "target": "enemy0",
+    "description": "Deal 10 damage.",
+    "icon": "🂡"
+  },
+  {
+    "cardId": "king_power",
+    "name": "King of Hearts",
+    "type": "power",
+    "rarity": "uncommon",
+    "energyCost": 1,
+    "currencyGain": {"gold": 2},
+    "description": "Gain 2 Gold each turn.",
+    "icon": "🂾"
+  },
+  {
+    "cardId": "queen_heal",
+    "name": "Queen of Hearts",
+    "type": "skill",
+    "rarity": "uncommon",
+    "energyCost": 1,
+    "heal": 8,
+    "target": "player",
+    "description": "Heal 8 HP.",
+    "icon": "🂽"
+  },
+  {
+    "cardId": "jack_draw",
+    "name": "Jack of Clubs",
+    "type": "skill",
+    "rarity": "common",
+    "energyCost": 0,
+    "draw": 2,
+    "target": "player",
+    "description": "Draw 2 cards.",
+    "icon": "🂫"
+  },
+  {
+    "cardId": "ten_multi",
+    "name": "Ten of Diamonds",
+    "type": "attack",
+    "rarity": "common",
+    "energyCost": 2,
+    "damage": 4,
+    "target": "all enemies",
+    "description": "Deal 4 damage to ALL enemies.",
+    "icon": "🃊"
+  }
+]
+
