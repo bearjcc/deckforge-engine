@@ -20,7 +20,8 @@ export function createInitialState(config = {}) {
       currentHealth: config.startingHealth || 50,
       block: 0,
       powers: {},
-      currency: initializeCurrencies(config.currencies || []),
+      currency: initializeCurrencies(config.currencies || []),  // Reset each turn (for in-combat markets)
+      persistentCurrency: {}  // Persists between combats (for shops)
     },
     
     // Deck system
@@ -39,6 +40,12 @@ export function createInitialState(config = {}) {
     gameOver: false,
     victory: false,
     defeatReason: null,
+    
+    // Market system (optional)
+    market: null,  // Will be populated if market enabled
+    
+    // Post-combat rewards (optional)
+    pendingRewards: null,  // Set after victory if rewards enabled
     
     // Config reference
     config: config

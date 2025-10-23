@@ -202,6 +202,14 @@ export function endPlayerTurn(state) {
   // Discard hand
   state = discardHand(state)
   
+  // Reset turn-based currency (for in-combat markets)
+  // This is the Dominion/Ascension pattern: currency doesn't persist
+  if (state.config.marketSystem?.resetCurrency !== false) {
+    Object.keys(state.player.currency).forEach(currency => {
+      state.player.currency[currency] = 0
+    })
+  }
+  
   // Update power durations
   state = updatePowers(state)
   
