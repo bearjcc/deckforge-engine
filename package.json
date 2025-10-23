@@ -6,8 +6,12 @@
   "type": "module",
   "scripts": {
     "start": "npx serve public -p 3000",
-    "test": "node tests/engine.test.js",
-    "validate": "node tests/validate-content.js"
+    "test": "node tests/engine.test.js && node tests/integration.test.js",
+    "test:unit": "node tests/engine.test.js",
+    "test:integration": "node tests/integration.test.js",
+    "test:watch": "node --watch tests/engine.test.js",
+    "validate": "node tests/validate-content.js",
+    "test:all": "npm run validate && npm test"
   },
   "keywords": [
     "deck-building",
