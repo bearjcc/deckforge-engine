@@ -1,0 +1,563 @@
+/**
+ * DeckForge Engine - Styles
+ * 
+ * Following UI/UX patterns from:
+ * - Slay the Spire (hand at bottom, enemy at top, piles at sides)
+ * - Dominion (hand fanned, draw/discard stacks visible)
+ * - Ascension (center play area, resource display)
+ */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  background: #0d1b2a;
+  color: #e0e1dd;
+  overflow-x: hidden;
+  height: 100vh;
+}
+
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  font-size: 1.5em;
+}
+
+/* ==== MAIN GAME LAYOUT ==== */
+/* Following Slay the Spire pattern: Enemy top, Player bottom, Piles sides */
+
+.game-board {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  grid-template-columns: 120px 1fr 120px;
+  grid-template-areas:
+    "header   header      header"
+    "draw     enemy-area  discard"
+    "player   hand-area   end-turn";
+  height: 100vh;
+  gap: 10px;
+  padding: 10px;
+}
+
+/* ==== HEADER ==== */
+
+.game-header {
+  grid-area: header;
+  background: linear-gradient(135deg, #1b263b 0%, #0d1b2a 100%);
+  padding: 15px 20px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+}
+
+.game-title h1 {
+  font-size: 1.5em;
+  font-weight: 600;
+}
+
+.game-title p {
+  font-size: 0.9em;
+  color: #778da9;
+}
+
+.game-stats {
+  display: flex;
+  gap: 30px;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stat-label {
+  font-size: 0.8em;
+  color: #778da9;
+  text-transform: uppercase;
+}
+
+.stat-value {
+  font-size: 1.4em;
+  font-weight: bold;
+  color: #e0e1dd;
+}
+
+/* ==== DRAW PILE (Left Side) ==== */
+
+.draw-pile {
+  grid-area: draw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(27, 38, 59, 0.5);
+  border-radius: 8px;
+  padding: 20px 10px;
+  border: 2px solid #415a77;
+}
+
+.pile-stack {
+  width: 80px;
+  height: 110px;
+  background: linear-gradient(135deg, #415a77 0%, #1b263b 100%);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2em;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.pile-stack::after {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  background: linear-gradient(135deg, #778da9 0%, #415a77 100%);
+  border-radius: 8px;
+  z-index: -1;
+}
+
+.pile-count {
+  font-size: 0.9em;
+  color: #778da9;
+}
+
+/* ==== DISCARD PILE (Right Side) ==== */
+
+.discard-pile {
+  grid-area: discard;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(27, 38, 59, 0.5);
+  border-radius: 8px;
+  padding: 20px 10px;
+  border: 2px solid #415a77;
+}
+
+/* ==== ENEMY AREA (Top Center) ==== */
+
+.enemy-area {
+  grid-area: enemy-area;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.enemy {
+  background: linear-gradient(135deg, #8b2635 0%, #5a1a23 100%);
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+  border: 3px solid #a83448;
+  min-width: 350px;
+  text-align: center;
+}
+
+.enemy-name {
+  font-size: 1.8em;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+.enemy-icon {
+  font-size: 4em;
+  margin-bottom: 15px;
+}
+
+.enemy-stats {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 20px;
+}
+
+.enemy-stat {
+  display: flex;
+  flex-direction: column;
+}
+
+.enemy-stat-label {
+  font-size: 0.8em;
+  color: #d4a5a5;
+}
+
+.enemy-stat-value {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.enemy-intent {
+  background: rgba(0,0,0,0.3);
+  padding: 15px;
+  border-radius: 8px;
+  border: 2px solid rgba(255,255,255,0.2);
+}
+
+.intent-label {
+  font-size: 0.9em;
+  color: #d4a5a5;
+  margin-bottom: 5px;
+}
+
+.intent-action {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.enemy.defeated {
+  background: #2a2a2a;
+  border-color: #4a4a4a;
+  opacity: 0.6;
+}
+
+/* ==== PLAYER AREA (Bottom Left) ==== */
+
+.player-area {
+  grid-area: player;
+  background: rgba(27, 38, 59, 0.8);
+  border-radius: 8px;
+  padding: 15px;
+  border: 2px solid #415a77;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.player-health {
+  font-size: 1.8em;
+  font-weight: bold;
+  color: #ef476f;
+  margin-bottom: 10px;
+}
+
+.player-energy {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #06ffa5;
+  margin-bottom: 10px;
+}
+
+.player-block {
+  font-size: 1.3em;
+  color: #3498db;
+  margin-bottom: 15px;
+}
+
+.player-powers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 10px;
+}
+
+.power-badge {
+  background: #e94560;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 0.85em;
+  font-weight: bold;
+}
+
+.deck-info {
+  margin-top: auto;
+  padding-top: 15px;
+  border-top: 1px solid #415a77;
+  font-size: 0.9em;
+  color: #778da9;
+}
+
+/* ==== HAND AREA (Bottom Center) ==== */
+/* Following Dominion/Slay the Spire: Cards fanned at bottom */
+
+.hand-area {
+  grid-area: hand-area;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 10px;
+  position: relative;
+  min-height: 220px;
+}
+
+.hand {
+  display: flex;
+  gap: 10px;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  padding: 10px;
+  max-width: 100%;
+}
+
+/* ==== CARD STYLING ==== */
+/* Standard playing card dimensions: 2.5" x 3.5" ratio (5:7) */
+
+.card {
+  width: 140px;
+  min-width: 140px;
+  height: 196px;
+  background: #fff;
+  color: #333;
+  border-radius: 10px;
+  padding: 12px;
+  border: 3px solid #ccc;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.card:hover {
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 8px 25px rgba(255,255,255,0.3);
+  z-index: 10;
+  border-color: #ffd60a;
+}
+
+.card.attack {
+  border-color: #e63946;
+  background: linear-gradient(135deg, #fff 0%, #ffe5e5 100%);
+}
+
+.card.skill {
+  border-color: #457b9d;
+  background: linear-gradient(135deg, #fff 0%, #e5f2ff 100%);
+}
+
+.card.power {
+  border-color: #9b59b6;
+  background: linear-gradient(135deg, #fff 0%, #f3e5ff 100%);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 8px;
+}
+
+.card-cost {
+  background: #06ffa5;
+  color: #000;
+  font-weight: bold;
+  font-size: 1.2em;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.card-type {
+  font-size: 0.7em;
+  text-transform: uppercase;
+  color: #666;
+  font-weight: 600;
+}
+
+.card-icon {
+  font-size: 3em;
+  text-align: center;
+  margin: 10px 0;
+}
+
+.card-name {
+  font-weight: bold;
+  font-size: 0.95em;
+  text-align: center;
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+
+.card-description {
+  font-size: 0.85em;
+  color: #555;
+  text-align: center;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.3;
+}
+
+.card:active {
+  transform: translateY(-5px) scale(1.02);
+}
+
+/* ==== END TURN BUTTON ==== */
+
+.end-turn-area {
+  grid-area: end-turn;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 10px;
+}
+
+.end-turn-btn {
+  width: 100%;
+  max-width: 140px;
+  height: 80px;
+  background: linear-gradient(135deg, #06ffa5 0%, #00d4aa 100%);
+  color: #000;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1.1em;
+  text-transform: uppercase;
+  box-shadow: 0 4px 15px rgba(6, 255, 165, 0.3);
+  transition: all 0.2s ease;
+}
+
+.end-turn-btn:hover {
+  background: linear-gradient(135deg, #00ff9f 0%, #00c49a 100%);
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(6, 255, 165, 0.5);
+}
+
+.end-turn-btn:active {
+  transform: scale(0.98);
+}
+
+/* ==== GAME OVER OVERLAY ==== */
+
+.game-over-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.game-over {
+  background: linear-gradient(135deg, #1b263b 0%, #0d1b2a 100%);
+  padding: 60px;
+  border-radius: 20px;
+  text-align: center;
+  border: 3px solid #415a77;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+  max-width: 500px;
+}
+
+.game-over.victory {
+  border-color: #06ffa5;
+}
+
+.game-over.defeat {
+  border-color: #e63946;
+}
+
+.game-over h2 {
+  font-size: 3em;
+  margin-bottom: 20px;
+}
+
+.game-over.victory h2 {
+  color: #06ffa5;
+}
+
+.game-over.defeat h2 {
+  color: #e63946;
+}
+
+.game-over p {
+  font-size: 1.2em;
+  margin-bottom: 30px;
+  color: #778da9;
+}
+
+.game-over button {
+  padding: 15px 50px;
+  background: linear-gradient(135deg, #415a77 0%, #1b263b 100%);
+  color: #fff;
+  border: 2px solid #778da9;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1.1em;
+  font-weight: bold;
+  transition: all 0.2s ease;
+}
+
+.game-over button:hover {
+  background: linear-gradient(135deg, #778da9 0%, #415a77 100%);
+  transform: scale(1.05);
+}
+
+/* ==== RESPONSIVE ==== */
+
+@media (max-width: 768px) {
+  .game-board {
+    grid-template-columns: 80px 1fr 80px;
+    grid-template-rows: auto auto 1fr auto;
+    grid-template-areas:
+      "header  header      header"
+      "player  player      player"
+      "draw    enemy-area  discard"
+      "hand-area hand-area end-turn";
+  }
+  
+  .card {
+    width: 110px;
+    min-width: 110px;
+    height: 154px;
+    font-size: 0.85em;
+  }
+  
+  .card-icon {
+    font-size: 2em;
+  }
+}
+
+/* ==== ANIMATIONS ==== */
+
+@keyframes cardDraw {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card {
+  animation: cardDraw 0.3s ease;
+}
+
+@keyframes damageFlash {
+  0%, 100% { background: transparent; }
+  50% { background: rgba(230, 57, 70, 0.5); }
+}
+
+.damage-flash {
+  animation: damageFlash 0.5s ease;
+}
+

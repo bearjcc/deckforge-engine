@@ -3,9 +3,11 @@
   "version": "1.0.0",
   "description": "Generic deck-building adventure game engine - bring your own content!",
   "main": "public/index.html",
+  "type": "module",
   "scripts": {
-    "start": "npx serve public",
-    "test": "echo \"Tests coming soon\" && exit 0"
+    "start": "npx serve public -p 3000",
+    "test": "node tests/engine.test.js",
+    "validate": "node tests/validate-content.js"
   },
   "keywords": [
     "deck-building",
@@ -13,9 +15,16 @@
     "game-engine",
     "browser-game",
     "roguelike",
-    "adventure-game"
+    "adventure-game",
+    "open-source",
+    "javascript",
+    "es6-modules"
   ],
-  "author": "Joseph C. Caswell",
+  "author": {
+    "name": "Joseph C. Caswell",
+    "email": "bearjcc@gmail.com",
+    "url": "https://ursaminor.games"
+  },
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -24,6 +33,11 @@
   "bugs": {
     "url": "https://github.com/bearjcc/deckforge-engine/issues"
   },
-  "homepage": "https://github.com/bearjcc/deckforge-engine#readme"
+  "homepage": "https://github.com/bearjcc/deckforge-engine#readme",
+  "engines": {
+    "node": ">=14.0.0"
+  }
 }
+
+
 

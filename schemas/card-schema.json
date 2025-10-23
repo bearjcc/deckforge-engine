@@ -1,0 +1,141 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://deckforge.games/schemas/card.json",
+  "title": "Card",
+  "description": "A playing card in a deck-building game",
+  "type": "object",
+  "required": ["cardId", "name", "type", "rarity", "description"],
+  "properties": {
+    "cardId": {
+      "type": "string",
+      "description": "Unique identifier for this card template",
+      "pattern": "^[a-z0-9_]+$",
+      "examples": ["strike", "defend", "fireball"]
+    },
+    "name": {
+      "type": "string",
+      "description": "Display name of the card",
+      "minLength": 1,
+      "examples": ["Strike", "Defend", "Fireball"]
+    },
+    "type": {
+      "type": "string",
+      "description": "Card type/category",
+      "enum": ["attack", "skill", "power", "ally", "item", "spell", "trait", "curse", "status"],
+      "examples": ["attack", "skill", "power"]
+    },
+    "rarity": {
+      "type": "string",
+      "description": "How rare/powerful the card is",
+      "enum": ["starter", "common", "uncommon", "rare", "legendary"],
+      "examples": ["starter", "common", "rare"]
+    },
+    "energyCost": {
+      "type": "integer",
+      "description": "Energy required to play this card",
+      "minimum": 0,
+      "default": 0,
+      "examples": [0, 1, 2, 3]
+    },
+    "currencyCost": {
+      "type": "object",
+      "description": "Currency costs to acquire this card",
+      "additionalProperties": {
+        "type": "integer",
+        "minimum": 0
+      },
+      "examples": [{"gold": 50}, {"funding": 10, "prestige": 5}]
+    },
+    "damage": {
+      "type": "integer",
+      "description": "Damage dealt to enemies",
+      "minimum": 0,
+      "examples": [6, 10, 15]
+    },
+    "block": {
+      "type": "integer",
+      "description": "Block/defense gained",
+      "minimum": 0,
+      "examples": [5, 8, 12]
+    },
+    "heal": {
+      "type": "integer",
+      "description": "HP healed",
+      "minimum": 0,
+      "examples": [5, 10]
+    },
+    "draw": {
+      "type": "integer",
+      "description": "Number of cards drawn",
+      "minimum": 0,
+      "examples": [1, 2, 3]
+    },
+    "currencyGain": {
+      "type": "object",
+      "description": "Resources gained when played",
+      "additionalProperties": {
+        "type": "integer",
+        "minimum": 0
+      },
+      "examples": [{"gold": 2}, {"funding": 3, "science": 1}]
+    },
+    "powers": {
+      "type": "object",
+      "description": "Status effects applied",
+      "additionalProperties": {
+        "type": "integer",
+        "minimum": 0
+      },
+      "examples": [{"vulnerable": 2}, {"strength": 3}]
+    },
+    "target": {
+      "type": "string",
+      "description": "Default target for this card",
+      "enum": ["player", "self", "enemy0", "enemy1", "enemy2", "all enemies", "random enemy", "choose"],
+      "default": "enemy0",
+      "examples": ["enemy0", "all enemies", "player"]
+    },
+    "exhausts": {
+      "type": "boolean",
+      "description": "Card is removed from combat after playing",
+      "default": false
+    },
+    "persistent": {
+      "type": "boolean",
+      "description": "Card stays in play (powers)",
+      "default": false
+    },
+    "ethereal": {
+      "type": "boolean",
+      "description": "Card is discarded if not played",
+      "default": false
+    },
+    "innate": {
+      "type": "boolean",
+      "description": "Card always starts in opening hand",
+      "default": false
+    },
+    "description": {
+      "type": "string",
+      "description": "Full text describing what the card does",
+      "minLength": 1,
+      "examples": ["Deal 6 damage.", "Gain 5 Block."]
+    },
+    "flavor": {
+      "type": "string",
+      "description": "Optional flavor text",
+      "examples": ["The simplest solution is often the best."]
+    },
+    "icon": {
+      "type": "string",
+      "description": "Emoji or image path for the card",
+      "examples": ["🗡️", "🛡️", "cards/strike.png"]
+    },
+    "image": {
+      "type": "string",
+      "description": "Full card art image path",
+      "examples": ["cards/strike.png", "images/fireball.jpg"]
+    }
+  }
+}
+

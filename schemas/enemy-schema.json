@@ -1,0 +1,88 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://deckforge.games/schemas/enemy.json",
+  "title": "Enemy",
+  "description": "An enemy, monster, boss, or obstacle in the game",
+  "type": "object",
+  "required": ["enemyId", "name", "type", "maxHealth", "intents"],
+  "properties": {
+    "enemyId": {
+      "type": "string",
+      "description": "Unique identifier for this enemy template",
+      "pattern": "^[a-z0-9_]+$",
+      "examples": ["cultist", "slime_boss", "alien_scout"]
+    },
+    "name": {
+      "type": "string",
+      "description": "Display name of the enemy",
+      "minLength": 1,
+      "examples": ["Cultist", "Slime Boss", "Alien Scout"]
+    },
+    "type": {
+      "type": "string",
+      "description": "Enemy category",
+      "enum": ["monster", "elite", "boss", "hazard"],
+      "examples": ["monster", "boss"]
+    },
+    "maxHealth": {
+      "type": "integer",
+      "description": "Maximum HP for this enemy",
+      "minimum": 1,
+      "examples": [30, 50, 120]
+    },
+    "intents": {
+      "type": "array",
+      "description": "List of actions the enemy can take",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["type", "description"],
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["attack", "defend", "buff", "debuff", "special"],
+            "examples": ["attack", "buff"]
+          },
+          "damage": {
+            "type": "integer",
+            "description": "Damage dealt (for attack intents)",
+            "minimum": 0
+          },
+          "block": {
+            "type": "integer",
+            "description": "Block gained (for defend intents)",
+            "minimum": 0
+          },
+          "powers": {
+            "type": "object",
+            "description": "Status effects applied",
+            "additionalProperties": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "description": {
+            "type": "string",
+            "description": "What this intent does",
+            "examples": ["Attack for 6", "Gain 2 Strength"]
+          },
+          "icon": {
+            "type": "string",
+            "description": "Icon for this intent",
+            "examples": ["⚔️", "💪"]
+          }
+        }
+      }
+    },
+    "icon": {
+      "type": "string",
+      "description": "Icon representing this enemy",
+      "examples": ["👹", "🐉", "👽"]
+    },
+    "description": {
+      "type": "string",
+      "description": "Lore or flavor text about enemy"
+    }
+  }
+}
+
